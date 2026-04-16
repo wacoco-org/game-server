@@ -44,9 +44,9 @@ public class GraphicsLoader {
                         int spriteSize = Constants.SPRITE_SIZE;
                         for (int i = 0; i < numRotations; i++) {
                             double degrees = (360.0 / numRotations) * i;
+                            // rotate now handles resizing/cropping to SPRITE_SIZE internally
                             BufferedImage rotated = rotate(img, degrees);
-                            BufferedImage resized = resize(rotated, spriteSize, spriteSize);
-                            rotations.add(resized);
+                            rotations.add(rotated);
                         }
                         rotatedImages.put(name, rotations);
                         logger.info("Pre-generated 32 rotations for: {}", name);
@@ -71,30 +71,46 @@ public class GraphicsLoader {
     }
 
     public BufferedImage rotate(BufferedImage image, double degrees) {
-        double radians = Math.toRadians(degrees);
-        double sin = Math.abs(Math.sin(radians));
-        double cos = Math.abs(Math.cos(radians));
-        int w = image.getWidth();
-        int h = image.getHeight();
-        int newW = (int) Math.floor(w * cos + h * sin);
-        int newH = (int) Math.floor(h * cos + w * sin);
+        int spriteSize = Constants.SPRITE_SIZE;
+        int largeSize = spriteSize * 4;
         
-        // Use TYPE_INT_ARGB to support transparency
-        BufferedImage rotated = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = rotated.createGraphics();
+        // 1. Create a large canvas (4 * SPRITE_SIZE)
+        BufferedImage largeCanvas = new BufferedImage(largeSize, largeSize, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = largeCanvas.createGraphics();
+        
+        // 2. Setup rotation
+        double radians = Math.toRadians(degrees);
         AffineTransform at = new AffineTransform();
-        at.translate((newW - w) / 2.0, (newH - h) / 2.0);
-        at.rotate(radians, w / 2.0, h / 2.0);
+        
+        // Move to center of large canvas
+        at.translate(largeSize / 2.0, largeSize / 2.0);
+        // Rotate
+        at.rotate(radians);
+        
+        // Scale to SPRITE_SIZE
+        double scaleX = (double) spriteSize / image.getWidth();
+        double scaleY = (double) spriteSize / image.getHeight();
+        at.scale(scaleX, scaleY);
+        
+        // Move back by half of original image size to center it
+        at.translate(-image.getWidth() / 2.0, -image.getHeight() / 2.0);
+        
+        g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setTransform(at);
         g2d.drawImage(image, 0, 0, null);
         g2d.dispose();
 
-        return rotated;
+        // 3. Crop the SPRITE_SIZE square in the middle
+        int x = (largeSize - spriteSize) / 2;
+        int y = (largeSize - spriteSize) / 2;
+        
+        return largeCanvas.getSubimage(x, y, spriteSize, spriteSize);
     }
 
     public BufferedImage copy(BufferedImage image) {
         BufferedImage copy = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = copy.createGraphics();
+        g2d.setComposite(java.awt.AlphaComposite.Src);
         g2d.drawImage(image, 0, 0, null);
         g2d.dispose();
         return copy;
@@ -103,6 +119,7 @@ public class GraphicsLoader {
     public BufferedImage resize(BufferedImage image, int targetWidth, int targetHeight) {
         BufferedImage resized = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = resized.createGraphics();
+        g2d.setComposite(java.awt.AlphaComposite.Src);
         g2d.drawImage(image, 0, 0, targetWidth, targetHeight, null);
         g2d.dispose();
         return resized;
@@ -113,21 +130,44 @@ public class GraphicsLoader {
         int numRotations = 32;
         BufferedImage sheet = new BufferedImage(spriteSize * numRotations, spriteSize, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = sheet.createGraphics();
-
-        // Resize the original to SPRITE_SIZE first to ensure we rotate the correctly sized sprite
-        // or rotate first then resize? Rotating 16x16 can lose detail.
-        // Let's resize the original to 16x16 and then rotate, or rotate the original and resize each rotation.
-        // Rotating then resizing is better for quality.
         
         for (int i = 0; i < numRotations; i++) {
             double degrees = (360.0 / numRotations) * i;
             BufferedImage rotated = rotate(original, degrees);
-            BufferedImage resized = resize(rotated, spriteSize, spriteSize);
-            g2d.drawImage(resized, i * spriteSize, 0, null);
+            g2d.drawImage(rotated, i * spriteSize, 0, null);
         }
 
         g2d.dispose();
         return sheet;
+    }
+
+    public BufferedImage generateCombinedSpriteSheet() {
+        int spriteSize = Constants.SPRITE_SIZE;
+        int numRotations = 32;
+        int numUnits = rotatedImages.size();
+        
+        if (numUnits == 0) {
+            return new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        }
+
+        BufferedImage combinedSheet = new BufferedImage(spriteSize * numRotations, spriteSize * numUnits, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = combinedSheet.createGraphics();
+
+        int row = 0;
+        // Sort keys to have deterministic output
+        java.util.List<String> sortedNames = new java.util.ArrayList<>(rotatedImages.keySet());
+        java.util.Collections.sort(sortedNames);
+
+        for (String name : sortedNames) {
+            java.util.List<BufferedImage> rotations = rotatedImages.get(name);
+            for (int i = 0; i < rotations.size(); i++) {
+                g2d.drawImage(rotations.get(i), i * spriteSize, row * spriteSize, null);
+            }
+            row++;
+        }
+
+        g2d.dispose();
+        return combinedSheet;
     }
 
     public Map<String, BufferedImage> getImages() {

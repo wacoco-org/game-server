@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-16T09:26:53.426Z" hostname="Mikaels-MacBook-Air.local" time="0.419">
+<testsuite name="org.example.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-16T09:38:54.559Z" hostname="Mikaels-MacBook-Air.local" time="0.338">
   <properties/>
-  <testcase name="testLoadAndRotate()" classname="org.example.AppTest" time="0.419"/>
-  <system-out><![CDATA[11:26:51.862 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.AppTest]: AppTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:26:51.899 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.App for test class org.example.AppTest
+  <testcase name="testLoadAndRotate()" classname="org.example.AppTest" time="0.338"/>
+  <system-out><![CDATA[11:38:53.612 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.AppTest]: AppTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:38:53.647 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.App for test class org.example.AppTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,31 +14,31 @@
 
  :: Spring Boot ::                (v3.4.4)
 
-2026-04-16T11:26:52.009+02:00  INFO 10164 --- [    Test worker] org.example.AppTest                      : Starting AppTest using Java 21.0.10 with PID 10164 (started by miwa in /Volumes/dev/game-server/app)
-2026-04-16T11:26:52.010+02:00  INFO 10164 --- [    Test worker] org.example.AppTest                      : No active profile set, falling back to 1 default profile: "default"
-2026-04-16T11:26:52.323+02:00  INFO 10164 --- [    Test worker] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-2026-04-16T11:26:52.419+02:00  INFO 10164 --- [    Test worker] org.example.AppTest                      : Started AppTest in 0.481 seconds (process running for 0.84)
-2026-04-16T11:26:52.489+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: battleship.psd (1024x1024)
-2026-04-16T11:26:52.574+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: battleship.psd
-2026-04-16T11:26:52.576+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Rotated battleship.psd by 90 degrees. New dimensions: 1024x1024
-2026-04-16T11:26:52.577+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Created a copy of battleship.psd. Hash code: original=1337346642, copy=1890881203
-2026-04-16T11:26:52.633+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: bomber.psd (1024x1024)
-2026-04-16T11:26:52.694+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: bomber.psd
-2026-04-16T11:26:52.751+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: carrier.psd (1024x1024)
-2026-04-16T11:26:52.838+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: carrier.psd
-2026-04-16T11:26:52.857+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: destroyer.psd (1024x1024)
-2026-04-16T11:26:52.914+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: destroyer.psd
-2026-04-16T11:26:52.934+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: fighter.psd (1024x1024)
-2026-04-16T11:26:52.990+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: fighter.psd
-2026-04-16T11:26:53.014+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: submarine.psd (1024x1024)
-2026-04-16T11:26:53.069+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: submarine.psd
-2026-04-16T11:26:53.122+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: tank.psd (1024x1024)
-2026-04-16T11:26:53.202+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: tank.psd
-2026-04-16T11:26:53.241+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: transport.psd (1024x1024)
-2026-04-16T11:26:53.316+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: transport.psd
-2026-04-16T11:26:53.352+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: troop.psd (1024x1024)
-2026-04-16T11:26:53.420+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: troop.psd
-2026-04-16T11:26:53.420+02:00  INFO 10164 --- [    Test worker] org.example.GraphicsLoader               : Total images loaded into memory: 9
+2026-04-16T11:38:53.758+02:00  INFO 11554 --- [    Test worker] org.example.AppTest                      : Starting AppTest using Java 21.0.10 with PID 11554 (started by miwa in /Volumes/dev/game-server/app)
+2026-04-16T11:38:53.759+02:00  INFO 11554 --- [    Test worker] org.example.AppTest                      : No active profile set, falling back to 1 default profile: "default"
+2026-04-16T11:38:54.057+02:00  INFO 11554 --- [    Test worker] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-04-16T11:38:54.156+02:00  INFO 11554 --- [    Test worker] org.example.AppTest                      : Started AppTest in 0.469 seconds (process running for 0.819)
+2026-04-16T11:38:54.224+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: battleship.psd (1024x1024)
+2026-04-16T11:38:54.240+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: battleship.psd
+2026-04-16T11:38:54.240+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Rotated battleship.psd by 90 degrees. New dimensions: 64x64
+2026-04-16T11:38:54.240+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Created a copy of battleship.psd. Hash code: original=738636051, copy=2053425932
+2026-04-16T11:38:54.270+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: bomber.psd (1024x1024)
+2026-04-16T11:38:54.273+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: bomber.psd
+2026-04-16T11:38:54.338+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: carrier.psd (1024x1024)
+2026-04-16T11:38:54.342+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: carrier.psd
+2026-04-16T11:38:54.364+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: destroyer.psd (1024x1024)
+2026-04-16T11:38:54.367+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: destroyer.psd
+2026-04-16T11:38:54.392+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: fighter.psd (1024x1024)
+2026-04-16T11:38:54.394+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: fighter.psd
+2026-04-16T11:38:54.418+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: submarine.psd (1024x1024)
+2026-04-16T11:38:54.421+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: submarine.psd
+2026-04-16T11:38:54.464+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: tank.psd (1024x1024)
+2026-04-16T11:38:54.467+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: tank.psd
+2026-04-16T11:38:54.509+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: transport.psd (1024x1024)
+2026-04-16T11:38:54.511+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: transport.psd
+2026-04-16T11:38:54.552+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Loaded PSD: troop.psd (1024x1024)
+2026-04-16T11:38:54.555+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Pre-generated 32 rotations for: troop.psd
+2026-04-16T11:38:54.555+02:00  INFO 11554 --- [    Test worker] org.example.GraphicsLoader               : Total images loaded into memory: 9
 ]]></system-out>
   <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
 WARNING: A Java agent has been loaded dynamically (/Users/miwa/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)

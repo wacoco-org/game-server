@@ -30,9 +30,9 @@ class AppTest {
         BufferedImage rotated = loadGraphics.rotate(img, 90);
         assertNotNull(rotated, "Rotated image should not be null");
         
-        // Check dimensions for 90 degree rotation (swapped)
-        assertEquals(img.getHeight(), rotated.getWidth(), "Width of 90-deg rotated image should be original height");
-        assertEquals(img.getWidth(), rotated.getHeight(), "Height of 90-deg rotated image should be original width");
+        // Now rotated image should always be SPRITE_SIZE x SPRITE_SIZE
+        assertEquals(Constants.SPRITE_SIZE, rotated.getWidth(), "Width of rotated image should be SPRITE_SIZE");
+        assertEquals(Constants.SPRITE_SIZE, rotated.getHeight(), "Height of rotated image should be SPRITE_SIZE");
         
         BufferedImage copy = loadGraphics.copy(img);
         assertNotNull(copy, "Copy should not be null");
@@ -57,5 +57,12 @@ class AppTest {
             assertEquals(Constants.SPRITE_SIZE, rotation.getWidth());
             assertEquals(Constants.SPRITE_SIZE, rotation.getHeight());
         }
+
+        // Verify combined sprite sheet
+        BufferedImage combined = loadGraphics.generateCombinedSpriteSheet();
+        assertNotNull(combined, "Combined sheet should not be null");
+        int numUnits = loadGraphics.getRotatedImages().size();
+        assertEquals(Constants.SPRITE_SIZE * 32, combined.getWidth(), "Combined width should be 32 * SPRITE_SIZE");
+        assertEquals(Constants.SPRITE_SIZE * numUnits, combined.getHeight(), "Combined height should be numUnits * SPRITE_SIZE");
     }
 }

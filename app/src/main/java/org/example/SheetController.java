@@ -39,4 +39,13 @@ public class SheetController {
         ImageIO.write(sheet, "png", baos);
         return baos.toByteArray();
     }
+
+    @GetMapping(value = "/sheet/units", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getCombinedSheet() throws IOException {
+        BufferedImage combinedSheet = loadGraphics.generateCombinedSpriteSheet();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(combinedSheet, "png", baos);
+        return baos.toByteArray();
+    }
 }
