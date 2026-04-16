@@ -43,5 +43,10 @@ class AppTest {
         BufferedImage resized = loadGraphics.resize(img, Constants.SPRITE_SIZE, Constants.SPRITE_SIZE);
         assertEquals(Constants.SPRITE_SIZE, resized.getWidth());
         assertEquals(Constants.SPRITE_SIZE, resized.getHeight());
+
+        BufferedImage sheet = loadGraphics.generateSpriteSheet(img);
+        assertNotNull(sheet, "Sprite sheet should not be null");
+        assertEquals(Constants.SPRITE_SIZE * 32, sheet.getWidth(), "Sheet width should be 16 * 32");
+        assertEquals(Constants.SPRITE_SIZE, sheet.getHeight(), "Sheet height should be 16");
     }
 }

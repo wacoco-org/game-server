@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.456s</div>
+<div class="counter">0.438s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,7 +82,7 @@
 </thead>
 <tr>
 <td class="success">testLoadAndRotate()</td>
-<td class="success">0.456s</td>
+<td class="success">0.438s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -90,8 +90,8 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>11:16:05.976 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.AppTest]: AppTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:16:06.019 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.App for test class org.example.AppTest
+<pre>11:22:27.090 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.AppTest]: AppTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:22:27.129 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.App for test class org.example.AppTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -102,21 +102,22 @@
 
  :: Spring Boot ::                (v3.4.4)
 
-2026-04-16T11:16:06.137+02:00  INFO 8025 --- [    Test worker] org.example.AppTest                      : Starting AppTest using Java 21.0.10 with PID 8025 (started by miwa in /Volumes/dev/game-server/app)
-2026-04-16T11:16:06.137+02:00  INFO 8025 --- [    Test worker] org.example.AppTest                      : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2026-04-16T11:16:06.432+02:00  INFO 8025 --- [    Test worker] org.example.AppTest                      : Started AppTest in 0.369 seconds (process running for 0.722)
-2026-04-16T11:16:06.508+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: battleship.psd (1024x1024)
-2026-04-16T11:16:06.523+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Rotated battleship.psd by 90 degrees. New dimensions: 1024x1024
-2026-04-16T11:16:06.524+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Created a copy of battleship.psd. Hash code: original=1567025476, copy=1184527733
-2026-04-16T11:16:06.549+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: bomber.psd (1024x1024)
-2026-04-16T11:16:06.613+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: carrier.psd (1024x1024)
-2026-04-16T11:16:06.635+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: destroyer.psd (1024x1024)
-2026-04-16T11:16:06.660+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: fighter.psd (1024x1024)
-2026-04-16T11:16:06.681+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: submarine.psd (1024x1024)
-2026-04-16T11:16:06.747+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: tank.psd (1024x1024)
-2026-04-16T11:16:06.784+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: transport.psd (1024x1024)
-2026-04-16T11:16:06.819+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: troop.psd (1024x1024)
-2026-04-16T11:16:06.820+02:00  INFO 8025 --- [    Test worker] org.example.LoadGraphics                 : Total images loaded into memory: 9
+2026-04-16T11:22:27.245+02:00  INFO 9206 --- [    Test worker] org.example.AppTest                      : Starting AppTest using Java 21.0.10 with PID 9206 (started by miwa in /Volumes/dev/game-server/app)
+2026-04-16T11:22:27.245+02:00  INFO 9206 --- [    Test worker] org.example.AppTest                      : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2026-04-16T11:22:27.546+02:00  INFO 9206 --- [    Test worker] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-04-16T11:22:27.643+02:00  INFO 9206 --- [    Test worker] org.example.AppTest                      : Started AppTest in 0.469 seconds (process running for 0.841)
+2026-04-16T11:22:27.714+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: battleship.psd (1024x1024)
+2026-04-16T11:22:27.728+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Rotated battleship.psd by 90 degrees. New dimensions: 1024x1024
+2026-04-16T11:22:27.729+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Created a copy of battleship.psd. Hash code: original=1391249801, copy=1969752268
+2026-04-16T11:22:27.786+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: bomber.psd (1024x1024)
+2026-04-16T11:22:27.858+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: carrier.psd (1024x1024)
+2026-04-16T11:22:27.879+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: destroyer.psd (1024x1024)
+2026-04-16T11:22:27.902+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: fighter.psd (1024x1024)
+2026-04-16T11:22:27.928+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: submarine.psd (1024x1024)
+2026-04-16T11:22:27.997+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: tank.psd (1024x1024)
+2026-04-16T11:22:28.040+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: transport.psd (1024x1024)
+2026-04-16T11:22:28.077+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Loaded PSD: troop.psd (1024x1024)
+2026-04-16T11:22:28.077+02:00  INFO 9206 --- [    Test worker] org.example.LoadGraphics                 : Total images loaded into memory: 9
 </pre>
 </span>
 </div>
@@ -139,7 +140,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14</a> at 16 Apr 2026, 11:16:07</p>
+<a href="https://www.gradle.org">Gradle 8.14</a> at 16 Apr 2026, 11:22:28</p>
 </div>
 </div>
 </body>
