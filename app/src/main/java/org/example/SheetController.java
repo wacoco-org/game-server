@@ -14,9 +14,9 @@ import java.util.Map;
 @RestController
 public class SheetController {
 
-    private final LoadGraphics loadGraphics;
+    private final GraphicsLoader loadGraphics;
 
-    public SheetController(LoadGraphics loadGraphics) {
+    public SheetController(GraphicsLoader loadGraphics) {
         this.loadGraphics = loadGraphics;
     }
 

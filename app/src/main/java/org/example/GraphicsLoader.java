@@ -17,14 +17,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class LoadGraphics {
+public class GraphicsLoader {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoadGraphics.class);
+    private static final Logger logger = LoggerFactory.getLogger(GraphicsLoader.class);
 
     @Value("classpath*:/art/*.psd")
     private Resource[] resources;
 
     private final Map<String, BufferedImage> images = new HashMap<>();
+    private final Map<String, java.util.List<BufferedImage>> rotatedImages = new HashMap<>();
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadGraphics() {
@@ -36,6 +37,19 @@ public class LoadGraphics {
                         String name = resource.getFilename();
                         images.put(name, img);
                         logger.info("Loaded PSD: {} ({}x{})", name, img.getWidth(), img.getHeight());
+                        
+                        // Pre-generate 32 rotations (resized to SPRITE_SIZE)
+                        java.util.List<BufferedImage> rotations = new java.util.ArrayList<>();
+                        int numRotations = 32;
+                        int spriteSize = Constants.SPRITE_SIZE;
+                        for (int i = 0; i < numRotations; i++) {
+                            double degrees = (360.0 / numRotations) * i;
+                            BufferedImage rotated = rotate(img, degrees);
+                            BufferedImage resized = resize(rotated, spriteSize, spriteSize);
+                            rotations.add(resized);
+                        }
+                        rotatedImages.put(name, rotations);
+                        logger.info("Pre-generated 32 rotations for: {}", name);
                         
                         // Demonstration: Rotate and Copy
                         if ("battleship.psd".equals(name)) {
@@ -118,5 +132,9 @@ public class LoadGraphics {
 
     public Map<String, BufferedImage> getImages() {
         return images;
+    }
+
+    public Map<String, java.util.List<BufferedImage>> getRotatedImages() {
+        return rotatedImages;
     }
 }

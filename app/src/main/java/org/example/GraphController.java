@@ -14,31 +14,31 @@ import java.util.Map;
 @RestController
 public class GraphController {
 
-    private final LoadGraphics loadGraphics;
+    private final GraphicsLoader loadGraphics;
 
-    public GraphController(LoadGraphics loadGraphics) {
+    public GraphController(GraphicsLoader loadGraphics) {
         this.loadGraphics = loadGraphics;
     }
 
-    @GetMapping(value = "/graphics/{name}", produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] getGraphic(@PathVariable String name) throws IOException {
-        Map<String, BufferedImage> images = loadGraphics.getImages();
-        
-        // Ensure the name has .psd extension if it wasn't provided, 
-        // or just look for the key as it was stored in LoadGraphics.
-        BufferedImage img = images.get(name);
-        if (img == null && !name.endsWith(".psd")) {
-            img = images.get(name + ".psd");
+    @GetMapping(value = "/graph/{name}/{index}", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getGraphic(@PathVariable String name, @PathVariable int index) throws IOException {
+        java.util.List<BufferedImage> rotations = loadGraphics.getRotatedImages().get(name);
+        if (rotations == null && !name.endsWith(".psd")) {
+            rotations = loadGraphics.getRotatedImages().get(name + ".psd");
         }
 
-        if (img == null) {
+        if (rotations == null) {
             throw new ResourceNotFoundException("Image not found: " + name);
         }
 
-        BufferedImage resized = loadGraphics.resize(img, Constants.SPRITE_SIZE, Constants.SPRITE_SIZE);
+        if (index < 0 || index >= rotations.size()) {
+            throw new ResourceNotFoundException("Rotation index out of bounds: " + index);
+        }
+
+        BufferedImage img = rotations.get(index);
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(resized, "png", baos);
+        ImageIO.write(img, "png", baos);
         return baos.toByteArray();
     }
 }

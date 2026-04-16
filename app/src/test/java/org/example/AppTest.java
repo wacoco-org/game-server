@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppTest {
 
     @Autowired
-    private LoadGraphics loadGraphics;
+    private GraphicsLoader loadGraphics;
 
     @Test
     void testLoadAndRotate() {
-        assertNotNull(loadGraphics, "LoadGraphics should be autowired");
+        assertNotNull(loadGraphics, "GraphicsLoader should be autowired");
         Map<String, BufferedImage> images = loadGraphics.getImages();
         assertFalse(images.isEmpty(), "Images should be loaded");
         
@@ -48,5 +48,14 @@ class AppTest {
         assertNotNull(sheet, "Sprite sheet should not be null");
         assertEquals(Constants.SPRITE_SIZE * 32, sheet.getWidth(), "Sheet width should be 16 * 32");
         assertEquals(Constants.SPRITE_SIZE, sheet.getHeight(), "Sheet height should be 16");
+
+        // Verify pre-generated rotations
+        java.util.List<BufferedImage> rotations = loadGraphics.getRotatedImages().get("battleship.psd");
+        assertNotNull(rotations, "Rotations for battleship.psd should be pre-generated");
+        assertEquals(32, rotations.size(), "Should have 32 rotations");
+        for (BufferedImage rotation : rotations) {
+            assertEquals(Constants.SPRITE_SIZE, rotation.getWidth());
+            assertEquals(Constants.SPRITE_SIZE, rotation.getHeight());
+        }
     }
 }
