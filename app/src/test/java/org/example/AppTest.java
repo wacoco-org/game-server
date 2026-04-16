@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.awt.image.BufferedImage;
 import java.util.Map;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +18,29 @@ class AppTest {
 
     @Autowired
     private GraphicsLoader loadGraphics;
+
+    @Autowired
+    private WorldService worldService;
+
+    @Test
+    void testWorldService() {
+        assertNotNull(worldService);
+        List<Unit>[][] grid = worldService.getGrid();
+        assertEquals(100, grid.length);
+        assertEquals(100, grid[0].length);
+
+        Unit tank = new Unit("1", "tank");
+        worldService.addUnit(10, 20, tank);
+        
+        assertTrue(worldService.getGrid()[10][20].contains(tank));
+        
+        int[] newPos = worldService.moveUnit("1", 5, -5);
+        assertEquals(15, newPos[0]);
+        assertEquals(15, newPos[1]);
+        
+        assertFalse(worldService.getGrid()[10][20].contains(tank));
+        assertTrue(worldService.getGrid()[15][15].contains(tank));
+    }
 
     @Test
     void testLoadAndRotate() {
