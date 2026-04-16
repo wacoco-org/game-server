@@ -85,6 +85,14 @@ public class LoadGraphics {
         return copy;
     }
 
+    public BufferedImage resize(BufferedImage image, int targetWidth, int targetHeight) {
+        BufferedImage resized = new BufferedImage(targetWidth, targetHeight, image.getType());
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(image, 0, 0, targetWidth, targetHeight, null);
+        g2d.dispose();
+        return resized;
+    }
+
     public Map<String, BufferedImage> getImages() {
         return images;
     }

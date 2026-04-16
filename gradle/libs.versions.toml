@@ -6,6 +6,7 @@ guava = "33.4.5-jre"
 junit-jupiter = "5.12.1"
 springBoot = "3.4.4"
 twelvemonkeys = "3.13.1"
+springdoc = "2.8.5"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
@@ -13,5 +14,6 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jun
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
+springdoc-openapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
 twelvemonkeys-imageio-psd = { module = "com.twelvemonkeys.imageio:imageio-psd", version.ref = "twelvemonkeys" }
 twelvemonkeys-imageio-core = { module = "com.twelvemonkeys.imageio:imageio-core", version.ref = "twelvemonkeys" }

@@ -39,5 +39,9 @@ class AppTest {
         assertEquals(img.getWidth(), copy.getWidth());
         assertEquals(img.getHeight(), copy.getHeight());
         assertNotSame(img, copy, "Copy should be a different object");
+
+        BufferedImage resized = loadGraphics.resize(img, Constants.SPRITE_SIZE, Constants.SPRITE_SIZE);
+        assertEquals(Constants.SPRITE_SIZE, resized.getWidth());
+        assertEquals(Constants.SPRITE_SIZE, resized.getHeight());
     }
 }
