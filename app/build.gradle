@@ -20,6 +20,8 @@ repositories {
 dependencies {
     implementation libs.spring.boot.starter
     implementation libs.spring.boot.starter.web
+    implementation libs.twelvemonkeys.imageio.psd
+    implementation libs.twelvemonkeys.imageio.core
     // Use JUnit Jupiter for testing.
     testImplementation libs.junit.jupiter
     testImplementation libs.spring.boot.starter.test

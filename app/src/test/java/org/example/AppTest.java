@@ -4,11 +4,40 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.awt.image.BufferedImage;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+    @Autowired
+    private LoadGraphics loadGraphics;
+
+    @Test
+    void testLoadAndRotate() {
+        assertNotNull(loadGraphics, "LoadGraphics should be autowired");
+        Map<String, BufferedImage> images = loadGraphics.getImages();
+        assertFalse(images.isEmpty(), "Images should be loaded");
+        
+        BufferedImage img = images.get("battleship.psd");
+        assertNotNull(img, "battleship.psd should be loaded");
+        
+        BufferedImage rotated = loadGraphics.rotate(img, 90);
+        assertNotNull(rotated, "Rotated image should not be null");
+        
+        // Check dimensions for 90 degree rotation (swapped)
+        assertEquals(img.getHeight(), rotated.getWidth(), "Width of 90-deg rotated image should be original height");
+        assertEquals(img.getWidth(), rotated.getHeight(), "Height of 90-deg rotated image should be original width");
+        
+        BufferedImage copy = loadGraphics.copy(img);
+        assertNotNull(copy, "Copy should not be null");
+        assertEquals(img.getWidth(), copy.getWidth());
+        assertEquals(img.getHeight(), copy.getHeight());
+        assertNotSame(img, copy, "Copy should be a different object");
     }
 }
